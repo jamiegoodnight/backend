@@ -4,7 +4,10 @@ const cors = require('cors')
 const session = require('express-session')
 const KnexSessionStore = require('connect-session-knex')(session)
 
-const knexConnection = require('../database/dbConfig.js')
+const knexConnection = require('../data/dbConfig.js')
+
+const UserRoutes = require('../user/user-router.js')
+const RolesRoutes = require('../roles/roles-router.js')
 
 const server = express();
 
@@ -18,17 +21,20 @@ const sessionOptions = {
   },
   resave: false,
   saveUninitialized: true,
-  // store: new KnexSessionStore({  //// start back up once I create db
-  //   knex: knexConnection,
-  //   createtable: true,
-  //   clearInterval: 1000 * 60 * 60
-  // })
+  store: new KnexSessionStore({ 
+    knex: knexConnection,
+    createtable: true,
+    clearInterval: 1000 * 60 * 60
+  })
 }
 
 server.use(helmet())
 server.use(express.json())
 server.use(cors())
 server.use(session(sessionOptions))
+
+server.use('/api', UserRoutes)
+server.use('/api/roles', RolesRoutes)
 
 server.get('/', (request, response) => {
   response.json({ api: 'up', session: request.session })

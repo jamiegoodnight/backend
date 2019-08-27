@@ -22,7 +22,7 @@ function create(user) {
     .then(ids => {
       const [id] = ids;
       return findUserId(id)
-        .select('id', 'username', 'role')
+        .select('id', 'username', 'role_id')
     })
 }
 

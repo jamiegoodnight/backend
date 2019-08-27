@@ -13,7 +13,7 @@ router.post('/register', (request, response) => {
 
   Users.create(newUser)
     .then(created => {
-      response.status(201).response.json(created)
+      response.status(201).json(created)
     })
     .catch(error => {
       console.log(error)
@@ -25,7 +25,7 @@ router.post('/login', (request, response) => {
   let { username, password } = request.body
 
   if (username && password) {
-    Users.findBy({ username })
+    Users.findUser({ username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {

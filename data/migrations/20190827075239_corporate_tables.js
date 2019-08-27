@@ -36,6 +36,7 @@ exports.up = function(knex) {
         .defaultTo(null)
       events.datetime('event_end')
         .defaultTo(null)
+      events.integer('e')
     })
     .createTable('vendors', vendors => {
       vendors.increments()

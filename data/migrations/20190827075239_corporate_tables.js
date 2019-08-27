@@ -27,7 +27,9 @@ exports.up = function(knex) {
         .notNullable()
         .unique()
       events.text('event_description')
-      events.string('event_budget') // not a string
+        .notNullable()
+      events.float('event_budget')
+        .notNullable()
       events.string('event_location', 255)
         .defaultTo(null)
       events.datetime('event_start')
@@ -39,19 +41,25 @@ exports.up = function(knex) {
       vendors.increments()
       vendors.text('vendor_name')
         .unique()
+        .notNullable()
     })
     .createTable('lists', lists => {
       lists.increments();
       lists.integer('event_id')
         .unsigned()
         .references('events.id')
+        .onUpdate('cascade')
+        .onDelete('cascade')
       lists.text('item_name')
-      lists.string('item_cost')
+        .notNullable()
+      lists.float('item_cost')
+        .notNullable()
       lists.boolean('item_complete')
         .defaultTo(false)
       lists.integer('item_vendor')
         .unsigned()
         .references('vendors.id')
+        .onUpdate('cascade')
     })
 };
 

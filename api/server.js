@@ -4,7 +4,7 @@ const cors = require('cors')
 const session = require('express-session')
 const KnexSessionStore = require('connect-session-knex')(session)
 
-const knexConnection = require('../database/dbConfig.js')
+const knexConnection = require('../data/dbConfig.js')
 
 const server = express();
 

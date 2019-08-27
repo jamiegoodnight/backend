@@ -3,9 +3,9 @@ module.exports = {
     client: 'postgres',
     connection: {
       host: 'localhost',
-      database: 'portfoliov1',
+      database: 'corporateevent',
       user:     "postgres",
-      password: process.env.POSTGRES_PASSWORD
+
     },
     migrations: {
       directory: './data/migrations'
@@ -18,7 +18,7 @@ module.exports = {
     client: 'postgres',
     connection: {
       host: 'localhost',
-      database: 'portfoliov1test',
+      database: 'corporateeventtest',
       user:     "postgres",
       password: process.env.POSTGRES_PASSWORD
     },
@@ -28,5 +28,10 @@ module.exports = {
     seeds: {
       directory: './data/seeds'
     },
-  } 
+  },
+
 };
+
+
+//production
+// migrations directory: __dirname + '/data/migrations'

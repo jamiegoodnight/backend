@@ -16,9 +16,11 @@ function findEvents() {
     .select('*')
 }
 
+
+//// this is going to require a vendor join as well based upon vendor ids
 function findEventsID(id) {
   return db('events')
-    .join('lists', 'lists.event_id', '=', 'events.id')
+    .join('lists','lists.event_id', '=', 'events.id')
     .where({ id })
     .first()
     .select('*')
@@ -29,11 +31,12 @@ function findEventsID(id) {
 //     .where()
 // }
 ////// Where user is included in list
+/// event_users includes id
 
 function createEvent(newEvent) {
   return db('events')
     .insert(newEvent, 'id')
-    .then(events => {
+    .then(ids => {
       const [id] = ids;
       return findEventsID(id)
         .select('*')

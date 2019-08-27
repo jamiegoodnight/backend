@@ -1,4 +1,14 @@
 module.exports = {
+  production: {
+    client: 'postgres',
+    connection: proccess.env.DATABASE_URL,
+    migrations: {
+      directory: __dirname + '/data/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/data/seeds'
+    },
+  },
   development: {
     client: 'postgres',
     connection: {
@@ -31,7 +41,3 @@ module.exports = {
   },
 
 };
-
-
-//production
-// migrations directory: __dirname + '/data/migrations'

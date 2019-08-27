@@ -6,6 +6,9 @@ const KnexSessionStore = require('connect-session-knex')(session)
 
 const knexConnection = require('../data/dbConfig.js')
 
+const UserRoutes = require('../user/user-router.js')
+const RolesRoutes = require('../roles/roles-router.js')
+
 const server = express();
 
 const sessionOptions = {
@@ -29,6 +32,9 @@ server.use(helmet())
 server.use(express.json())
 server.use(cors())
 server.use(session(sessionOptions))
+
+server.use('/api', UserRoutes)
+server.use('/api/roles', RolesRoutes)
 
 server.get('/', (request, response) => {
   response.json({ api: 'up', session: request.session })

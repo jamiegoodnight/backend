@@ -11,7 +11,7 @@ router.post('/register', (request, response) => {
   const hash = bcrypt.hashSync(newUser.password)
   newUser.password = hash
 
-  Users.add(newUser)
+  Users.create(newUser)
     .then(created => {
       response.status(201).response.json(created)
     })
@@ -50,5 +50,18 @@ router.get('/logout', restricted, (request, response) => {
     response.status(200).json({ message: 'You have been logged out' })
   })
 })
+
+//// Get list of users
+router.get('/users', (request, response) => {
+  Users.find()
+    .then(users => {
+      response.json(users)
+    })
+    .catch(error => {
+      console.log(error)
+      response.send(error)
+    })
+})
+
 
 module.exports = router

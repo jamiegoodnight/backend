@@ -58,6 +58,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('lists')
+    .dropTableIfExists('vendors')
     .dropTableIfExists('events')
     .dropTableIfExists('users')
     .dropTableIfExists('roles')

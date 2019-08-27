@@ -4,9 +4,16 @@ const knexConfig = require('../knexfile.js')
 const db = knex(knexConfig.development)
 
 module.exports = {
+  findUserId,
   create,
-  findBy,
+  findUser,
   find
+}
+
+function findUserId(id) {
+  return db('users')
+    .where({ id })
+    .first()
 }
 
 function create(user) {
@@ -14,17 +21,17 @@ function create(user) {
     .insert(user, 'id')
     .then(ids => {
       const [id] = ids;
-      return findById(id)
+      return findUserId(id)
         .select('id', 'username', 'role')
     })
 }
 
-function findBy(filter) {
+function findUser(filter) {
   return db('users')
     .where(filter)
 }
 
 function find() {
   return db('users')
-    .select('id', 'username', 'role')
+    .select('id', 'username', 'role_id')
 }

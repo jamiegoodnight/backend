@@ -5,7 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('roles').insert([
-        {role_name: 'Adminstrator'},
+        {role_name: 'Administrator'},
         {role_name: 'Manager'},
         {role_name: 'User'}
       ]);

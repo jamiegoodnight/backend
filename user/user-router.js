@@ -29,7 +29,7 @@ router.post('/login', (request, response) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-        request.session.user = user.username // adding username to the session cookie
+        request.session.username = user.username // adding username to the session cookie
         request.session.loggedIn = true // Set info as logged in to true
         response.status(200).json({ message: `Welcome, ${user.username}` })
       } else {
@@ -52,7 +52,7 @@ router.get('/logout', restricted, (request, response) => {
 })
 
 //// Get list of users
-router.get('/users', (request, response) => {
+router.get('/users', restricted, (request, response) => {
   Users.find()
     .then(users => {
       response.json(users)

@@ -5,7 +5,7 @@ module.exports = {
       host: 'localhost',
       database: 'corporateevent',
       user:     "postgres",
-
+      password: process.env.POSTGRES_PASSWORD
     },
     migrations: {
       directory: './data/migrations'

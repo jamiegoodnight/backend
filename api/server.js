@@ -21,11 +21,11 @@ const sessionOptions = {
   },
   resave: false,
   saveUninitialized: true,
-  // store: new KnexSessionStore({  //// start back up once I create db
-  //   knex: knexConnection,
-  //   createtable: true,
-  //   clearInterval: 1000 * 60 * 60
-  // })
+  store: new KnexSessionStore({ 
+    knex: knexConnection,
+    createtable: true,
+    clearInterval: 1000 * 60 * 60
+  })
 }
 
 server.use(helmet())

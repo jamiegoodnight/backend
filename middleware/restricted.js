@@ -5,8 +5,8 @@ const Users = require('../user/user-model.js')
 module.exports = restricted
 
 function restricted(request, response, next) {
-
-  if (request.session && request.session.email) {
+  console.log(request.session)
+  if (request.session && request.session.username) {
     next();
   } else {
     response.status(401).json({ message: 'No unauthorized access to this part of site' })

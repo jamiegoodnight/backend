@@ -1,7 +1,16 @@
+const localPg = {
+  host: "localhost",
+  database: "corpdata",
+  user: "dev",
+  password: "pass"
+};
+
+const productionDBConnection = process.env.DATABASE_URL || localPg;
+
 module.exports = {
   production: {
     client: "pg",
-    connection: process.env.DATABASE_URL,
+    connection: productionDBConnection,
     migrations: {
       directory: __dirname + "/data/migrations"
     },

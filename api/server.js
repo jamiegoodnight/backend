@@ -28,9 +28,9 @@ const sessionOptions = {
   })
 };
 
+server.use(express.json());
 server.use(helmet());
 server.use(cors());
-server.use(express.json());
 server.use(session(sessionOptions));
 
 server.use("/api", UserRoutes);

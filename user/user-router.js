@@ -41,11 +41,9 @@ router.post("/login", (request, response) => {
         response.status(500).json({ message: "Issues logging in with server" });
       });
   } else {
-    response
-      .status(400)
-      .response.json({
-        message: "Please include username and password with request"
-      });
+    response.status(400).response.json({
+      message: "Please include username and password with request"
+    });
   }
 });
 

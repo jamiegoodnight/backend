@@ -52,7 +52,7 @@ router.get('/logout', restricted, (request, response) => {
 })
 
 //// Get list of users
-router.get('/users', restricted, (request, response) => {
+router.get('/users', (request, response) => {
   Users.find()
     .then(users => {
       response.json(users)

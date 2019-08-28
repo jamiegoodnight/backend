@@ -19,7 +19,13 @@ function findEvents() {
 
 //// this is going to require a vendor join as well based upon vendor ids
 function findEventsID(id) {
-  return db('events')
+  db('events')
+    .where({ id })
+    .first()
+    .then(event => {
+      return db('lists')
+        .where({ })
+    })
     .join('lists','lists.event_id', '=', 'events.id')
     .where({ id })
     .first()

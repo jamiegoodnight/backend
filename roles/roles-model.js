@@ -1,19 +1,14 @@
-const knex = require('knex')
-const knexConfig = require('../knexfile.js')
-
-const db = knex(knexConfig.development)
+const db = require("../data/dbConfig");
 
 module.exports = {
   find,
-  findRole,
-}
+  findRole
+};
 
 function find() {
-  return db('roles')
-    .select('*')
+  return db("roles").select("*");
 }
 
 function findRole(filter) {
-  return db('roles')
-    .where(filter)
+  return db("roles").where(filter);
 }

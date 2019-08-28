@@ -28,9 +28,13 @@ const sessionOptions = {
   })
 }
 
+const corsOptions = {
+  origin: '*'
+}
+
 server.use(helmet())
 server.use(express.json())
-server.use(cors())
+server.use(cors(corsOptions))
 server.use(session(sessionOptions))
 
 server.use('/api', UserRoutes)

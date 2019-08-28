@@ -33,7 +33,9 @@ router.get('/:id', (request, response) => {
 // router.post
 router.post('/', (request, response) => {
   let { event } = request.body
+
   console.log(event)
+
   Events.createEvent(event)
     .then(event => {
       response.status(200).json(event)
@@ -43,7 +45,13 @@ router.post('/', (request, response) => {
       response.status(500).json(error)
     })
 })
+
 // router.delete
+// router.delete('/:id', (request, response) => {
+//   let id = request.params.id
+
+//   Events.removeEvent(id)
+// })
 
 //// Available to added users
 // router.put
